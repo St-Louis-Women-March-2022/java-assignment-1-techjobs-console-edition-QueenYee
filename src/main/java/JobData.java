@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+
 /**
  * Created by LaunchCode
  */
@@ -43,7 +44,7 @@ public class JobData {
         }
 
         // Bonus mission: sort the results
-        Collections.sort(values);
+//        Collections.sort(values);
 
         return values;
     }
@@ -54,7 +55,7 @@ public class JobData {
         loadData();
 
         // Bonus mission; normal version returns allJobs
-        return new ArrayList<>(allJobs);
+        return allJobs;
     }
 
     /**
@@ -79,7 +80,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value)) {
                 jobs.add(row);
             }
         }
@@ -98,8 +99,21 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
+        // Holds the jobs with the search term
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        // Loops thought all list
+        for (HashMap<String, String> row : allJobs) {
+            // Loop though everything contained in the dictionary
+            for (String fields : row.values()) {
+                //if the search term is contained
+                if (fields.toLowerCase().contains(value)) {
+                    jobs.add(row);
+                    break; // prevents duplicates from showing up in the array list
+                }
+            }
+        }
+        // Return the Array that contains jobs with thee search terms
+        return jobs;
     }
 
     /**
