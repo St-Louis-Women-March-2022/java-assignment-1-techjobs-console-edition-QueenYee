@@ -44,8 +44,8 @@ public class TechJobs {
 
                     ArrayList<String> results = JobData.findAll(columnChoice);
 
-                    System.out.println("\n*** All " + columnChoices.get(columnChoice.toLowerCase())+ " Values ***");
-
+                    System.out.println("*** All " + columnChoices.get(columnChoice.toLowerCase()) + " Values ***");
+//                    System.out.println("\n*** All " + columnChoices.get(columnChoice.toLowerCase())+ " Values ***"); YEEEEEEEEEE
                     // Print list of skills, employers, etc
                     for (String item : results) {
                         System.out.println(item.toLowerCase());
@@ -59,6 +59,7 @@ public class TechJobs {
 
                 // What is their search term?
                 System.out.println("\nSearch term:");
+//                System.out.println("\nSearch term:\n"); YEEEEEEEEEEEE
                 String searchTerm = in.nextLine().toLowerCase();
 
                 if (searchField.equals("all")) {
@@ -87,8 +88,8 @@ public class TechJobs {
 
         do {
 
+//            System.out.println("\n" + menuHeader); YEEEEEEEEEEEEE
             System.out.println("\n" + menuHeader);
-
             // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
                 System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
@@ -119,16 +120,19 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-        if (someJobs.size() == 0)
-            System.out.println("No Results");
-        else {
+        if (someJobs.size() != 0) {
+
             for (int i = 0; i < someJobs.size(); i++) {
-                System.out.println("*****");
+                System.out.println("\n"+"*****");
+
                 for (Map.Entry<String, String> entry : someJobs.get(i).entrySet()) {
-                    System.out.println(entry.getKey() + ":" + entry.getValue());
+                    System.out.println(entry.getKey() + ":" + " " + entry.getValue());
+
                 }
-                System.out.println("*****\n");
+                System.out.println("*****");
             }
+        } else if(someJobs.size() == 0){
+            System.out.print("No Results");
         }
     }
 }
